@@ -61,5 +61,12 @@ class ProductTest < ActiveSupport::TestCase
   test "product title must be at least 10 characters long" do 
     product = products(:ruby)
     assert product.valid?
+
+    product.title = "0123456789"
+    assert product.valid?
+
+    product.title = "123456789"
+    assert product.invalid?
+    assert_equal ["must be at least 10 characters long"], product.errors[:title]
   end
 end
