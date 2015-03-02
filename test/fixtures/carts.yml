@@ -8,4 +8,6 @@ one: {}
 # column: value
 #
 two: {}
+
+default: {}
 #  column: value
