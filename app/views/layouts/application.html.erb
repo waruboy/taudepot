@@ -8,12 +8,15 @@
 </head>
 <BODY class='<%= controller.controller_name %>'>
   <div id="banner">
-    <%= image_tag("logo.png") %>      
+    <%= image_tag("logo.png") %>
     <%= @page_title || "Taudepot Online" %>
   </div>
   <div id="columns">
-    
+
     <div id="side">
+        <div id="cart">
+          <%= render @cart %>
+        </div>
       <ul>
         <li><a href="">Home</a></li>
         <li><a href="">Questions</a></li>
@@ -23,11 +26,11 @@
       Current time: <br>
       <%= Time.current.to_s(:long) %>
     </div>
-  
+
     <div id="main">
       <%= yield %>
     </div>
-  </div>  
+  </div>
 
 </BODY>
 </html>
