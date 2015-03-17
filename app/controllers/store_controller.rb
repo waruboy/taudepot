@@ -3,11 +3,15 @@ class StoreController < ApplicationController
   include CurrentCart
   before_action :set_cart
   def index
-    set_counter
-    if session[:counter] > 5
-      @counter = "You have visited this page %s" % view_context.pluralize(session[:counter], "time")
+    if params[:set_locale]
+      redirect_to store_url(locale: params[:set_locale])
+    else
+      set_counter
+      if session[:counter] > 5
+        @counter = "You have visited this page %s" % view_context.pluralize(session[:counter], "time")
+      end
+      @products = Product.order(:title)
     end
-    @products = Product.order(:title)
   end
 
   private

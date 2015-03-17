@@ -8,8 +8,15 @@
 </head>
 <BODY class='<%= controller.controller_name %>'>
   <div id="banner">
+    <%= form_tag store_path, class: 'locale' do %>
+      <%= select_tag 'set_locale',
+        options_for_select(LANGUAGES, I18n.locale.to_s),
+        onchange: 'this.form.submit()' %>
+      <%= submit_tag 'submit' %>
+      <%= javascript_tag "$('.locale input').hide()" %>
+    <% end %>
     <%#= image_tag("logo.png") %>
-    <%= @page_title || "Taudepot Online" %>
+    <%= @page_title || t('.title') %>
   </div>
   <div id="columns">
 
@@ -20,10 +27,10 @@
         <% end %>
       <% end %>
       <ul>
-        <li><%= link_to "Home", store_path %></li>
-        <li><a href="">Questions</a></li>
-        <li><a href="">News</a></li>
-        <li><a href="">Contact</a></li>
+        <li><%= link_to t('.home'), store_path %></li>
+        <li><a href=""><%= t('.questions') %></a></li>
+        <li><a href=""><%= t('.news') %></a></li>
+        <li><a href=""><%= t('.contact') %></a></li>
       </ul>
 
       <% if session[:user_id] %>
